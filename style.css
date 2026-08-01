@@ -1,3 +1,109 @@
+
+/* Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Poppins:wght@300;400;500;600&display=swap');
+
+
+/* =======================================
+   CHAPTERZ Luxury Theme
+======================================= */
+
+:root{
+
+--bg:#050505;
+
+--surface:#111111;
+
+--gold:#C9A227;
+
+--gold-light:#e2c35d;
+
+--white:#F8F8F8;
+
+--text:#d4d4d4;
+
+--border:rgba(255,255,255,.08);
+
+--transition:.45s ease;
+
+--radius:18px;
+
+--shadow:0 15px 45px rgba(0,0,0,.35);
+
+}
+
+*{
+
+margin:0;
+
+padding:0;
+
+box-sizing:border-box;
+
+scroll-behavior:smooth;
+
+}
+
+html{
+
+overflow-x:hidden;
+
+}
+
+body{
+
+background:var(--bg);
+
+color:var(--white);
+
+font-family:"Poppins",sans-serif;
+
+overflow-x:hidden;
+
+line-height:1.8;
+
+}
+
+img{
+
+display:block;
+
+max-width:100%;
+
+}
+
+a{
+
+text-decoration:none;
+
+color:inherit;
+
+}
+
+section{
+
+padding:120px 8%;
+
+position:relative;
+
+}
+
+h1,h2,h3{
+
+font-family:"Cormorant Garamond",serif;
+
+font-weight:600;
+
+letter-spacing:.5px;
+
+}
+
+::selection{
+
+background:var(--gold);
+
+color:#000;
+
+}
 /* Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Poppins:wght@300;400;500;600&display=swap');
 
@@ -250,3 +356,141 @@ padding:70px 8%;
 }
 
 }
+/* =======================================
+   Navbar
+======================================= */
+
+#header{
+
+position:fixed;
+
+top:0;
+
+left:0;
+
+width:100%;
+
+z-index:9999;
+
+transition:.4s;
+
+}
+
+.navbar{
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+padding:22px 8%;
+
+background:rgba(0,0,0,.18);
+
+backdrop-filter:blur(14px);
+
+border-bottom:1px solid rgba(255,255,255,.05);
+
+transition:.4s;
+
+}
+
+.logo{
+
+display:flex;
+
+align-items:center;
+
+gap:12px;
+
+}
+
+.logo img{
+
+width:46px;
+
+}
+
+.logo h2{
+
+font-size:28px;
+
+letter-spacing:4px;
+
+}
+
+.navbar ul{
+
+display:flex;
+
+gap:38px;
+
+list-style:none;
+
+}
+
+.navbar ul li a{
+
+font-size:15px;
+
+position:relative;
+
+transition:.3s;
+
+}
+
+.navbar ul li a::after{
+
+content:"";
+
+position:absolute;
+
+left:0;
+
+bottom:-6px;
+
+width:0;
+
+height:2px;
+
+background:var(--gold);
+
+transition:.35s;
+
+}
+
+.navbar ul li a:hover{
+
+color:var(--gold);
+
+}
+
+.navbar ul li a:hover::after{
+
+width:100%;
+
+}
+
+.contact-btn{
+
+padding:13px 28px;
+
+border:1px solid var(--gold);
+
+border-radius:50px;
+
+transition:.35s;
+
+}
+
+.contact-btn:hover{
+
+background:var(--gold);
+
+color:#000;
+
+box-shadow:0 0 25px rgba(201,162,39,.45);
+
+}
+
