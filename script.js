@@ -1,194 +1,543 @@
-// ===============================
-// CHAPTERZ - script.js
-// ===============================
+/* =====================================================
+   CHAPTERZ | Premium Website Script
+===================================================== */
 
-// Smooth scroll for navbar links
-document.querySelectorAll('nav a').forEach(link => {
-    link.addEventListener('click', function(e) {
 
-        const target = document.querySelector(this.getAttribute('href'));
+/* ==========================
+   PAGE LOADER
+========================== */
+
+window.addEventListener("load",()=>{
+
+    setTimeout(()=>{
+
+        document.body.classList.add("loaded");
+
+    },3000);
+
+});
+
+
+
+/* ==========================
+   NAVBAR SCROLL EFFECT
+========================== */
+
+const header = document.getElementById("header");
+
+
+window.addEventListener("scroll",()=>{
+
+
+    if(window.scrollY > 80){
+
+        header.classList.add("scrolled");
+
+    }
+
+    else{
+
+        header.classList.remove("scrolled");
+
+    }
+
+
+});
+
+
+
+/* ==========================
+   SMOOTH SCROLL
+========================== */
+
+document.querySelectorAll('a[href^="#"]').forEach(link=>{
+
+
+    link.addEventListener("click",(e)=>{
+
+
+        const target = document.querySelector(
+            link.getAttribute("href")
+        );
+
 
         if(target){
 
             e.preventDefault();
 
-            window.scrollTo({
-                top: target.offsetTop - 80,
-                behavior: "smooth"
+
+            target.scrollIntoView({
+
+                behavior:"smooth"
+
             });
 
         }
 
+
     });
-});
 
-
-// Navbar Background Change
-
-window.addEventListener("scroll", function () {
-
-    const header = document.querySelector("header");
-
-    if (window.scrollY > 60) {
-
-        header.style.background = "rgba(0,0,0,0.95)";
-        header.style.transition = ".4s";
-
-    } else {
-
-        header.style.background = "rgba(0,0,0,.75)";
-
-    }
 
 });
 
 
-// Fade Animation on Scroll
 
-const sections = document.querySelectorAll("section");
+/* ==========================
+   SCROLL REVEAL
+========================== */
 
-const observer = new IntersectionObserver(entries => {
 
-    entries.forEach(entry => {
+const revealElements = document.querySelectorAll(
+"section, .service-card, .gallery-item, .stat, .contact-item"
+);
+
+
+const revealObserver = new IntersectionObserver((entries)=>{
+
+
+    entries.forEach(entry=>{
+
 
         if(entry.isIntersecting){
 
-            entry.target.style.opacity = "1";
-            entry.target.style.transform = "translateY(0px)";
-            entry.target.style.transition = ".8s";
+
+            entry.target.classList.add("active");
+
 
         }
 
+
     });
 
+
 },{
-    threshold:.15
-});
 
-sections.forEach(section=>{
-
-    section.style.opacity="0";
-    section.style.transform="translateY(50px)";
-
-    observer.observe(section);
+    threshold:0.15
 
 });
 
 
-// Hero Button Hover
 
-const btn=document.querySelector(".btn");
+revealElements.forEach(element=>{
 
-if(btn){
 
-btn.addEventListener("mouseenter",()=>{
+    element.classList.add("reveal");
 
-btn.style.boxShadow="0 0 25px rgba(212,175,55,.6)";
 
-});
+    revealObserver.observe(element);
 
-btn.addEventListener("mouseleave",()=>{
-
-btn.style.boxShadow="none";
 
 });
+/* =====================================================
+   CHAPTERZ PREMIUM INTERACTIONS
+===================================================== */
+
+
+/* ==========================
+   LOGO FLOAT / SCREENSAVER EFFECT
+========================== */
+
+
+const logo = document.querySelector(".loader-content img");
+
+
+if(logo){
+
+
+    let angle = 0;
+
+
+    setInterval(()=>{
+
+
+        angle += 1;
+
+
+        logo.style.transform =
+        `translateY(-8px) rotate(${Math.sin(angle)*3}deg)`;
+
+
+    },50);
+
 
 }
 
 
-// Back To Top Button
 
-const topBtn=document.createElement("button");
 
-topBtn.innerHTML="↑";
+/* ==========================
+   HERO PARALLAX EFFECT
+========================== */
 
-topBtn.id="topBtn";
 
-document.body.appendChild(topBtn);
+const hero = document.querySelector(".hero");
 
-topBtn.style.position="fixed";
-topBtn.style.bottom="25px";
-topBtn.style.right="25px";
-topBtn.style.width="50px";
-topBtn.style.height="50px";
-topBtn.style.borderRadius="50%";
-topBtn.style.border="none";
-topBtn.style.background="#D4AF37";
-topBtn.style.color="#000";
-topBtn.style.fontSize="22px";
-topBtn.style.cursor="pointer";
-topBtn.style.display="none";
-topBtn.style.zIndex="999";
+
+const heroContent = document.querySelector(".hero-content");
+
+
+
+window.addEventListener("mousemove",(e)=>{
+
+
+    if(hero && heroContent){
+
+
+        let x = (window.innerWidth / 2 - e.clientX) / 40;
+
+        let y = (window.innerHeight / 2 - e.clientY) / 40;
+
+
+
+        heroContent.style.transform =
+
+        `translate(${x}px,${y}px)`;
+
+
+    }
+
+
+});
+
+
+
+
+
+/* ==========================
+   BUTTON GLOW EFFECT
+========================== */
+
+
+const buttons = document.querySelectorAll(".btn");
+
+
+
+buttons.forEach(button=>{
+
+
+    button.addEventListener("mouseenter",()=>{
+
+
+        button.style.boxShadow =
+        "0 0 35px rgba(201,162,39,.55)";
+
+
+    });
+
+
+
+    button.addEventListener("mouseleave",()=>{
+
+
+        button.style.boxShadow="none";
+
+
+    });
+
+
+
+});
+
+
+
+
+
+/* ==========================
+   IMAGE TILT EFFECT
+========================== */
+
+
+const images = document.querySelectorAll(
+".gallery-item, .service-card, .stat"
+);
+
+
+
+images.forEach(item=>{
+
+
+    item.addEventListener("mousemove",(e)=>{
+
+
+        const rect=item.getBoundingClientRect();
+
+
+        const x =
+        e.clientX - rect.left;
+
+
+        const y =
+        e.clientY - rect.top;
+
+
+
+        const centerX =
+        rect.width/2;
+
+
+        const centerY =
+        rect.height/2;
+
+
+
+        const rotateX =
+        (y-centerY)/20;
+
+
+        const rotateY =
+        (centerX-x)/20;
+
+
+
+        item.style.transform =
+        `perspective(700px)
+        rotateX(${rotateX}deg)
+        rotateY(${rotateY}deg)
+        translateY(-8px)`;
+
+
+    });
+
+
+
+    item.addEventListener("mouseleave",()=>{
+
+
+        item.style.transform="";
+
+
+    });
+
+
+
+});
+
+
+
+
+
+/* ==========================
+   CURSOR GOLD TRAIL EFFECT
+========================== */
+
+
+const cursor=document.createElement("div");
+
+
+cursor.className="gold-cursor";
+
+
+document.body.appendChild(cursor);
+
+
+
+document.addEventListener("mousemove",(e)=>{
+
+
+    cursor.style.left =
+    e.clientX+"px";
+
+
+    cursor.style.top =
+    e.clientY+"px";
+
+
+});
+
+
+/* =====================================================
+   FINAL CHAPTERZ POLISH
+===================================================== */
+
+
+/* ==========================
+   WHATSAPP FLOAT BUTTON
+========================== */
+
+
+const whatsapp = document.createElement("a");
+
+
+whatsapp.href =
+"https://wa.me/917907222026";
+
+
+whatsapp.target="_blank";
+
+
+whatsapp.className =
+"whatsapp-float";
+
+
+whatsapp.innerHTML =
+'<i class="fa-brands fa-whatsapp"></i>';
+
+
+
+document.body.appendChild(whatsapp);
+
+
+
+
+
+/* ==========================
+   ACTIVE NAV LINK
+========================== */
+
+
+const sections =
+document.querySelectorAll("section[id]");
+
+
+const navLinks =
+document.querySelectorAll("nav a");
+
+
 
 window.addEventListener("scroll",()=>{
 
-if(window.scrollY>400){
 
-topBtn.style.display="block";
+let current="";
 
-}else{
 
-topBtn.style.display="none";
+sections.forEach(section=>{
+
+
+const sectionTop =
+section.offsetTop - 150;
+
+
+if(window.scrollY >= sectionTop){
+
+current =
+section.getAttribute("id");
 
 }
 
-});
-
-topBtn.addEventListener("click",()=>{
-
-window.scrollTo({
-
-top:0,
-
-behavior:"smooth"
-
-});
 
 });
 
 
-// Floating Animation for Cards
 
-const cards=document.querySelectorAll(".card");
-
-cards.forEach(card=>{
-
-card.addEventListener("mouseenter",()=>{
-
-card.style.transform="translateY(-12px) scale(1.03)";
-
-});
-
-card.addEventListener("mouseleave",()=>{
-
-card.style.transform="translateY(0px) scale(1)";
-
-});
-
-});
+navLinks.forEach(link=>{
 
 
-// Hero Text Animation
+link.classList.remove("active");
 
-window.addEventListener("load",()=>{
 
-const hero=document.querySelector(".hero-content");
+if(link.getAttribute("href")
+=== "#"+current){
 
-hero.style.opacity="0";
-hero.style.transform="translateY(40px)";
 
-setTimeout(()=>{
+link.classList.add("active");
 
-hero.style.transition="1.2s";
 
-hero.style.opacity="1";
-hero.style.transform="translateY(0px)";
+}
 
-},300);
 
 });
 
 
-// Console Message
+});
 
-console.log("%cWelcome to CHAPTERZ","color:#D4AF37;font-size:18px;font-weight:bold;");
+
+
+
+
+/* ==========================
+   CURRENT YEAR FOOTER
+========================== */
+
+
+const year =
+document.querySelector(".copyright");
+
+
+
+if(year){
+
+
+year.innerHTML =
+
+`© ${new Date().getFullYear()} Chapterz.
+Crafted With Passion.`;
+
+
+}
+
+
+
+
+
+/* ==========================
+   PREVENT IMAGE DRAG
+========================== */
+
+
+document.querySelectorAll("img")
+.forEach(img=>{
+
+
+img.addEventListener(
+"dragstart",
+(e)=>e.preventDefault()
+);
+
+
+});
+
+
+
+
+
+/* ==========================
+   MOBILE MENU PREPARATION
+========================== */
+
+
+const nav =
+document.querySelector("nav");
+
+
+const headerContainer =
+document.querySelector("#header .container");
+
+
+
+if(nav && headerContainer){
+
+
+const menu =
+document.createElement("div");
+
+
+menu.className =
+"menu-toggle";
+
+
+menu.innerHTML =
+`
+<span></span>
+<span></span>
+<span></span>
+`;
+
+
+
+headerContainer.appendChild(menu);
+
+
+
+menu.addEventListener("click",()=>{
+
+
+nav.classList.toggle("open");
+
+
+menu.classList.toggle("active");
+
+
+});
+
+
+}
