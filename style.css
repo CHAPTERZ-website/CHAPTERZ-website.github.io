@@ -1649,6 +1649,28 @@ body{
 .footer-links a:hover{
     color:#d4af37;
 }
+
+.service-hero{
+background:url("wedding-banner.jpg") center center/cover no-repeat;
+min-height:80vh;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+}
+
+.service-hero .hero-content{
+max-width:800px;
+}
+
+.service-hero h1{
+font-size:65px;
+}
+
+.service-hero p{
+max-width:700px;
+margin:auto;
+}
 .gallery{
     padding:100px 0;
 }
