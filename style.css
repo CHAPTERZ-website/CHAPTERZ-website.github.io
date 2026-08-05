@@ -1617,3 +1617,17 @@ body{
     min-height:100vh;
     padding-top:120px;
 }
+
+.service-card{
+    text-decoration:none;
+    color:inherit;
+    transition:.4s;
+}
+
+.service-card:hover{
+    transform:translateY(-10px);
+}
+
+.service-card p{
+    color:#cfcfcf;
+}
