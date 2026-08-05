@@ -1595,3 +1595,25 @@ font-size:38px;
 
 
 }
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    padding-top:90px;
+}
+
+#header{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    z-index:9999;
+    background:rgba(0,0,0,.85);
+    backdrop-filter:blur(15px);
+}
+
+.hero{
+    min-height:100vh;
+    padding-top:120px;
+}
